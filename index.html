@@ -3,1488 +3,2552 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pincopall Arts</title>
-  <meta name="description" content="Pincopall Arts" />
+  <title>Pincopall Arts — Artista & Wrapper</title>
+  <meta
+    name="description"
+    content="Pincopall Arts — artista visiva, opere, fotografia, superfici, wrapping e applicazione di pellicole adesive."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    :root {
-      --bg: #08080c;
-      --bg-soft: #101018;
-      --card: rgba(255,255,255,0.05);
-      --card-strong: rgba(255,255,255,0.08);
-      --stroke: rgba(255,255,255,0.1);
-      --text: #f7f3ef;
-      --muted: #bdb7b2;
-      --accent: #ff6a3d;
-      --accent-2: #ffc178;
-      --accent-3: #ef4fa4;
-      --accent-4: #7a5cff;
-      --glow: rgba(255,106,61,0.35);
-      --shadow: 0 24px 70px rgba(0,0,0,0.38);
-      --radius: 24px;
-      --max: 1220px;
-      --nav-h: 78px;
+    :root{
+      --bg:#fff8f2;
+      --bg-soft:#fff2e7;
+      --surface:rgba(255,255,255,.72);
+      --surface-strong:rgba(255,255,255,.9);
+      --text:#1e1916;
+      --muted:#6d6259;
+      --line:rgba(93,63,32,.12);
+      --orange:#ff7a18;
+      --orange-2:#ff9b45;
+      --orange-3:#ffbf88;
+      --peach:#ffe1c3;
+      --shadow:0 18px 50px rgba(102,58,20,.12);
+      --shadow-strong:0 30px 80px rgba(102,58,20,.18);
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --container:1220px;
+      --header-h:78px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at 12% 18%, rgba(239,79,164,0.14), transparent 24%),
-        radial-gradient(circle at 86% 12%, rgba(255,193,120,0.12), transparent 20%),
-        radial-gradient(circle at 72% 84%, rgba(122,92,255,0.12), transparent 24%),
-        linear-gradient(180deg, #07070a 0%, #0c0c12 42%, #101018 100%);
-      color: var(--text);
-      overflow-x: hidden;
+        radial-gradient(circle at 10% 10%, rgba(255,160,66,.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(255,190,120,.18), transparent 28%),
+        linear-gradient(180deg,#fff9f4 0%,#fff5ee 45%,#fff2ea 100%);
+      overflow-x:hidden;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.015), transparent 16%, transparent 84%, rgba(255,255,255,0.015));
-      z-index: 1;
+    body.menu-open{
+      overflow:hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    button{font:inherit}
 
-    .cursor-glow {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,106,61,0.16) 0%, rgba(239,79,164,0.08) 35%, rgba(255,106,61,0.01) 62%, transparent 74%);
-      pointer-events: none;
-      z-index: 0;
-      transform: translate(-50%, -50%);
-      filter: blur(14px);
-      transition: transform 0.08s linear;
+    .container{
+      width:min(calc(100% - 32px), var(--container));
+      margin-inline:auto;
     }
 
-    .noise::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.04;
-      z-index: 1;
+    .section{
+      position:relative;
+      padding:100px 0;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(255,122,24,.16);
+      color:#945d32;
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--orange),var(--orange-2));
+      box-shadow:0 0 0 5px rgba(255,122,24,.12);
+    }
+
+    .section-title{
+      margin:18px 0 14px;
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(2rem,4vw,4.6rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+    }
+
+    .section-desc{
+      max-width:760px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:clamp(1rem,1.05vw,1.08rem);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:none;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+      transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn-primary{
+      padding:14px 20px;
+      color:#fff;
+      background:linear-gradient(135deg,var(--orange),var(--orange-2));
+      box-shadow:0 14px 28px rgba(255,122,24,.24);
+    }
+
+    .btn-secondary{
+      padding:14px 18px;
+      color:var(--text);
+      background:rgba(255,255,255,.75);
+      border:1px solid rgba(255,122,24,.14);
+    }
+
+    .btn-white{
+      padding:15px 22px;
+      color:#1f1711;
+      background:#fff;
+      box-shadow:0 14px 30px rgba(90,49,11,.18);
+    }
+
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.68));
+      border:1px solid rgba(255,255,255,.8);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+    }
+
+    .orb{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(26px);
+      pointer-events:none;
+      opacity:.55;
+      z-index:0;
+    }
+
+    .orb-1{
+      width:260px;height:260px;
+      background:rgba(255,131,29,.18);
+      top:60px; right:-60px;
+    }
+
+    .orb-2{
+      width:220px;height:220px;
+      background:rgba(255,192,130,.22);
+      top:28%; left:-50px;
+    }
+
+    .orb-3{
+      width:250px;height:250px;
+      background:rgba(255,138,39,.14);
+      bottom:6%; right:8%;
+    }
+
+    .orb-4{
+      width:300px;height:300px;
+      background:rgba(255,172,92,.14);
+      top:15%; left:8%;
+    }
+
+    .grid-bg{
+      position:absolute;
+      inset:0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 3px 3px, 4px 4px;
-      mix-blend-mode: soft-light;
+        linear-gradient(rgba(255,122,24,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,122,24,.045) 1px, transparent 1px);
+      background-size:36px 36px;
+      mask-image:linear-gradient(180deg, transparent, rgba(0,0,0,.5), transparent);
+      pointer-events:none;
+      opacity:.45;
     }
 
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+    /* HEADER */
+    .site-header{
+      position:fixed;
+      top:14px;
+      left:0;
+      right:0;
+      z-index:1000;
+      pointer-events:none;
     }
 
-    .section {
-      padding: 108px 0;
-      position: relative;
+    .nav-wrap{
+      display:flex;
+      justify-content:center;
+      pointer-events:none;
     }
 
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,0.03);
-      border-radius: 999px;
-      color: #fff;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      backdrop-filter: blur(12px);
-      width: fit-content;
+    .nav{
+      width:min(calc(100% - 20px), 1160px);
+      min-height:var(--header-h);
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      border-radius:999px;
+      background:rgba(255,249,243,.72);
+      border:1px solid rgba(255,255,255,.88);
+      box-shadow:0 12px 36px rgba(79,49,15,.1);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      pointer-events:auto;
+      transition:.25s ease;
     }
 
-    .tag::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-3));
-      box-shadow: 0 0 16px var(--glow);
+    .nav.scrolled{
+      background:rgba(255,248,241,.9);
+      box-shadow:0 16px 44px rgba(79,49,15,.14);
     }
 
-    .section-head {
-      display: grid;
-      gap: 18px;
-      margin-bottom: 44px;
-      max-width: 820px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+      flex:0 1 auto;
     }
 
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(2.2rem, 5vw, 4.4rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      color:#fff;
+      font-weight:900;
+      background:linear-gradient(135deg,#ffb66f 0%,#ff8c2c 55%,#ff6f07 100%);
+      box-shadow:0 14px 24px rgba(255,122,24,.22);
     }
 
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.06rem;
-      line-height: 1.82;
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
     }
 
-    header.site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(20px);
-      background: rgba(9,9,13,0.62);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    .brand-text strong{
+      font-family:"Manrope",sans-serif;
+      font-size:1rem;
+      letter-spacing:-.03em;
     }
 
-    .nav {
-      min-height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .brand-text span{
+      color:var(--muted);
+      font-size:.82rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
 
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(255,106,61,0.25), rgba(239,79,164,0.2));
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 10px 30px rgba(0,0,0,0.24);
-      font-size: 0.82rem;
+    .nav-links a{
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.95rem;
+      font-weight:600;
+      color:#4b4038;
+      transition:.2s ease;
     }
 
-    .brand small {
-      display: block;
-      color: var(--muted);
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      font-size: 0.63rem;
-      text-transform: uppercase;
+    .nav-links a:hover{
+      background:rgba(255,122,24,.08);
+      color:#1b1714;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
     }
 
-    .nav-links a {
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      transition: 0.25s ease;
+    .mobile-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      border:1px solid rgba(255,122,24,.16);
+      background:rgba(255,255,255,.82);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #fff;
-      background: rgba(255,255,255,0.05);
+    .mobile-toggle span,
+    .mobile-toggle span::before,
+    .mobile-toggle span::after{
+      content:"";
+      display:block;
+      width:18px;
+      height:2px;
+      background:#2c221c;
+      border-radius:999px;
+      position:relative;
+      transition:.22s ease;
     }
 
-    .menu-toggle {
-      display: none;
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      font-size: 1.2rem;
+    .mobile-toggle span::before{position:absolute;top:-6px}
+    .mobile-toggle span::after{position:absolute;top:6px}
+
+    .mobile-panel{
+      display:none;
+      width:min(calc(100% - 20px), 1160px);
+      margin:10px auto 0;
+      padding:12px;
+      border-radius:24px;
+      background:rgba(255,250,245,.94);
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 16px 40px rgba(79,49,15,.12);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      pointer-events:auto;
     }
 
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 15px 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(135deg, var(--accent), var(--accent-3));
-      color: white;
-      font-weight: 700;
-      box-shadow: 0 18px 35px rgba(239,79,164,0.18), 0 10px 24px rgba(255,106,61,0.16);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    .mobile-panel.open{display:block}
+
+    .mobile-links{
+      display:grid;
+      gap:8px;
     }
 
-    .cta:hover { transform: translateY(-2px); }
-
-    .ghost {
-      background: rgba(255,255,255,0.04);
-      color: white;
-      border: 1px solid var(--stroke);
-      box-shadow: none;
+    .mobile-links a{
+      padding:14px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(255,122,24,.08);
+      font-weight:700;
+      color:#3f342e;
     }
 
-    .floating-cta {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 60;
-      padding: 14px 18px;
-      border-radius: 999px;
-      background: rgba(12,12,16,0.74);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
+    /* HERO */
+    .hero{
+      position:relative;
+      padding:140px 0 70px;
+      overflow:clip;
     }
 
-    .floating-cta .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-3));
-      box-shadow: 0 0 16px var(--glow);
+    .hero-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:32px;
+      align-items:center;
     }
 
-    .hero {
-      padding: 42px 0 60px;
-      min-height: calc(100vh - var(--nav-h));
-      display: grid;
-      place-items: center;
+    .hero-copy h1{
+      margin:20px 0 18px;
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(3rem,8vw,6.8rem);
+      line-height:.9;
+      letter-spacing:-.06em;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 28px;
-      align-items: stretch;
+    .hero-copy h1 .soft{
+      display:block;
+      color:#8b7a6e;
     }
 
-    .hero-copy,
-    .hero-visual {
-      position: relative;
-      border-radius: 34px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-      box-shadow: var(--shadow);
-      isolation: isolate;
+    .hero-copy p{
+      max-width:640px;
+      font-size:clamp(1.02rem,1.2vw,1.15rem);
+      line-height:1.8;
+      color:var(--muted);
+      margin:0 0 28px;
     }
 
-    .hero-copy {
-      padding: clamp(28px, 4vw, 56px);
-      display: grid;
-      align-content: center;
-      min-height: 680px;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:26px;
     }
 
-    .hero-copy::before,
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: auto auto -25% -15%;
-      width: 280px;
-      height: 280px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,193,120,0.25), transparent 65%);
-      filter: blur(24px);
-      z-index: -1;
+    .hero-meta{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
     }
 
-    .eyebrow {
-      margin-bottom: 18px;
+    .meta-box{
+      padding:18px;
+      border-radius:22px;
+      background:rgba(255,255,255,.58);
+      border:1px solid rgba(255,255,255,.72);
+      box-shadow:0 10px 28px rgba(79,49,15,.07);
     }
 
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(3.4rem, 8vw, 7.4rem);
-      line-height: 0.88;
-      letter-spacing: -0.08em;
-      max-width: 9.5ch;
+    .meta-box strong{
+      display:block;
+      margin-bottom:6px;
+      font-family:"Manrope",sans-serif;
+      font-size:1.2rem;
+      letter-spacing:-.04em;
     }
 
-    .hero h1 span {
-      display: inline-block;
-      background: linear-gradient(90deg, #fff, #ffd8bf 28%, #ffc178 58%, #ef89c1 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .meta-box span{
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.95rem;
     }
 
-    .hero p {
-      margin: 22px 0 0;
-      font-size: 1.08rem;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 60ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 40px;
-    }
-
-    .stat {
-      padding: 18px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.45rem;
-      margin-bottom: 6px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.45;
-    }
-
-    .hero-visual {
-      min-height: 680px;
-      padding: 26px;
-      display: grid;
-      align-items: end;
-    }
-
-    .art-frame {
-      position: absolute;
-      inset: 26px;
-      border-radius: 30px;
-      overflow: hidden;
+    .hero-visual{
+      min-height:700px;
+      padding:18px;
+      border-radius:36px;
+      position:relative;
+      overflow:hidden;
       background:
-        linear-gradient(140deg, rgba(255,106,61,0.5), rgba(239,79,164,0.34) 32%, rgba(122,92,255,0.22) 72%, rgba(8,8,12,0.06) 88%),
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.22), transparent 26%),
-        linear-gradient(135deg, #171722, #0f1015);
-      border: 1px solid rgba(255,255,255,0.1);
+        linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.42)),
+        linear-gradient(135deg, rgba(255,158,82,.12), rgba(255,221,192,.24));
+      border:1px solid rgba(255,255,255,.8);
+      box-shadow:var(--shadow);
     }
 
-    .art-frame::before,
-    .art-frame::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(1px);
-      opacity: 0.9;
+    .hero-stack{
+      position:relative;
+      width:100%;
+      height:100%;
+      min-height:660px;
     }
 
-    .art-frame::before {
-      width: 360px;
-      height: 360px;
-      right: -60px;
-      top: -40px;
-      background: radial-gradient(circle, rgba(255,255,255,0.24), rgba(255,255,255,0.02) 64%, transparent 70%);
-    }
-
-    .art-frame::after {
-      width: 240px;
-      height: 240px;
-      left: -40px;
-      bottom: -30px;
-      background: radial-gradient(circle, rgba(255,193,120,0.18), rgba(255,106,61,0.02) 62%, transparent 72%);
-    }
-
-    .oroboro {
-      position: absolute;
-      inset: 43% auto auto 50%;
-      transform: translate(-50%, -50%);
-      width: min(50vw, 350px);
-      height: min(50vw, 350px);
-      border-radius: 999px;
-      border: 20px solid rgba(255,255,255,0.10);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.08),
-        inset 0 0 70px rgba(255,106,61,0.18),
-        0 0 80px rgba(239,79,164,0.18);
-      animation: spinSlow 22s linear infinite;
-    }
-
-    .oroboro::before {
-      content: "";
-      position: absolute;
-      width: 72px;
-      height: 72px;
-      border-radius: 50% 50% 44% 56%;
-      background: linear-gradient(135deg, #ffe2d1, #ff9868);
-      right: 0;
-      top: 12px;
-      box-shadow: 0 0 28px rgba(255,193,120,0.32);
-      transform: rotate(20deg);
-    }
-
-    .visual-stack {
-      position: relative;
-      margin-left: auto;
-      width: min(92%, 390px);
-      display: grid;
-      gap: 14px;
-    }
-
-    .visual-card {
-      position: relative;
-      padding: 22px;
-      border-radius: 24px;
-      background: rgba(10,10,14,0.58);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(16px);
-    }
-
-    .visual-card h3 {
-      margin: 0 0 10px;
-      font-size: 1rem;
-      letter-spacing: 0.03em;
-    }
-
-    .visual-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .visual-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .visual-tile {
-      min-height: 110px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.1);
+    .placeholder{
+      position:relative;
+      overflow:hidden;
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.14), transparent 20%),
-        linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        linear-gradient(135deg,#d8d8d8,#efefef 42%,#cccccc 100%);
+      border:1px solid rgba(255,255,255,.72);
+      border-radius:28px;
+      box-shadow:0 14px 36px rgba(85,57,28,.11);
+      transform-style:preserve-3d;
+      will-change:transform;
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: 24px;
-      align-items: start;
+    .placeholder::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(110deg, transparent 12%, rgba(255,255,255,.28) 28%, transparent 42%);
+      transform:translateX(-120%);
+      animation:shimmer 4.4s linear infinite;
     }
 
-    .glass-card {
-      padding: 28px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.035));
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow);
+    .placeholder::after{
+      content:attr(data-label);
+      position:absolute;
+      left:18px;
+      bottom:16px;
+      color:rgba(0,0,0,.4);
+      font-size:.8rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.15em;
     }
 
-    .about-quote {
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
-      line-height: 1.25;
-      letter-spacing: -0.04em;
-      margin: 0;
-    }
-
-    .about-quote span {
-      color: var(--accent-2);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .services-grid,
-    .works-grid,
-    .contact-grid,
-    .info-grid,
-    .editorial-grid,
-    .gallery-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .services-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .service-card,
-    .editorial-card,
-    .gallery-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 280px;
-      padding: 24px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow);
-      transition: transform 0.28s ease, border-color 0.28s ease;
-    }
-
-    .service-card:hover,
-    .editorial-card:hover,
-    .gallery-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255,193,120,0.28);
-    }
-
-    .service-card .icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 1.35rem;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, rgba(255,106,61,0.18), rgba(239,79,164,0.16));
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .service-card h3,
-    .editorial-card h3,
-    .gallery-card h3 { margin: 0 0 10px; font-size: 1.2rem; }
-    .service-card p,
-    .editorial-card p,
-    .gallery-card p { margin: 0; color: var(--muted); line-height: 1.8; }
-
-    .service-card .corner,
-    .editorial-card .corner,
-    .gallery-card .corner {
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      right: -30px;
-      bottom: -40px;
-      background: radial-gradient(circle, rgba(255,106,61,0.2), transparent 70%);
-      border-radius: 999px;
-      filter: blur(8px);
-    }
-
-    .editorial-grid {
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: stretch;
-    }
-
-    .editorial-card.feature {
-      min-height: 420px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .prism::before{
       background:
-        radial-gradient(circle at 78% 24%, rgba(255,193,120,0.16), transparent 18%),
-        linear-gradient(145deg, rgba(239,79,164,0.14), rgba(255,106,61,0.1) 46%, rgba(255,255,255,0.03));
+        linear-gradient(120deg, transparent 18%, rgba(255,255,255,.16) 30%, transparent 42%),
+        linear-gradient(220deg, transparent 58%, rgba(255,180,106,.18) 72%, transparent 82%),
+        linear-gradient(135deg,#d8d8d8,#efefef 42%,#cccccc 100%);
+      animation:prismShift 6s linear infinite;
+      transform:none;
     }
 
-    .editorial-card aside {
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      line-height: 1.7;
+    @keyframes shimmer{
+      100%{transform:translateX(120%)}
     }
 
-    .editorial-stack {
-      display: grid;
-      gap: 18px;
+    @keyframes prismShift{
+      0%{filter:hue-rotate(0deg)}
+      100%{filter:hue-rotate(25deg)}
     }
 
-    .works-grid {
-      grid-template-columns: repeat(12, 1fr);
+    .hero-main{
+      position:absolute;
+      left:0;
+      top:42px;
+      width:68%;
+      height:74%;
     }
 
-    .work-card {
-      min-height: 250px;
-      padding: 24px;
-      border-radius: 28px;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.035));
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .hero-side-top{
+      position:absolute;
+      right:0;
+      top:0;
+      width:40%;
+      height:26%;
+      padding:16px;
+      border-radius:26px;
     }
 
-    .work-card.large { grid-column: span 7; }
-    .work-card.medium { grid-column: span 5; }
-    .work-card.full { grid-column: span 12; min-height: 210px; }
-
-    .work-bg {
-      position: absolute;
-      inset: 0;
-      opacity: 0.9;
-      z-index: 0;
+    .hero-side-bottom{
+      position:absolute;
+      right:2%;
+      bottom:5%;
+      width:42%;
+      height:32%;
+      padding:16px;
+      border-radius:26px;
     }
 
-    .work-bg.paint {
+    .hero-note{
+      position:absolute;
+      left:7%;
+      bottom:4%;
+      width:40%;
+      padding:18px;
+      border-radius:22px;
+      background:rgba(255,248,241,.92);
+      border:1px solid rgba(255,255,255,.84);
+      box-shadow:0 16px 34px rgba(87,49,12,.12);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+    }
+
+    .hero-note small{
+      display:block;
+      margin-bottom:8px;
+      color:#9d693e;
+      font-weight:800;
+      font-size:.76rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+    }
+
+    .hero-note strong{
+      display:block;
+      margin-bottom:8px;
+      font-family:"Manrope",sans-serif;
+      font-size:1.08rem;
+      letter-spacing:-.03em;
+    }
+
+    .hero-note span{
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.94rem;
+    }
+
+    .marquee-wrap{
+      overflow:hidden;
+      padding-top:22px;
+    }
+
+    .marquee{
+      display:flex;
+      gap:16px;
+      width:max-content;
+      animation:marquee 28s linear infinite;
+    }
+
+    .marquee-pill{
+      flex:0 0 auto;
+      white-space:nowrap;
+      padding:14px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(255,122,24,.1);
+      color:#5e5147;
+      font-weight:700;
+      box-shadow:0 8px 22px rgba(73,45,17,.05);
+    }
+
+    .marquee-pill::before{
+      content:"✦ ";
+      color:var(--orange);
+    }
+
+    @keyframes marquee{
+      to{transform:translateX(-50%)}
+    }
+
+    /* CINEMATIC FULLSCREEN */
+    .cinematic-section{
+      position:relative;
+      overflow:clip;
+      padding:30px 0 120px;
+    }
+
+    .cinematic-sticky{
+      position:relative;
+      min-height:300vh;
+    }
+
+    .cinematic-stage{
+      position:sticky;
+      top:0;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:110px 24px 34px;
+    }
+
+    .cinematic-card{
+      position:absolute;
+      width:min(88vw, 1180px);
+      height:min(72vh, 760px);
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.86);
+      box-shadow:var(--shadow-strong);
       background:
-        radial-gradient(circle at 18% 22%, rgba(255,255,255,0.16), transparent 14%),
-        radial-gradient(circle at 72% 34%, rgba(255,193,120,0.24), transparent 18%),
-        linear-gradient(135deg, rgba(239,79,164,0.26), rgba(255,106,61,0.2), rgba(255,255,255,0.02));
+        linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      transform-origin:center center;
     }
 
-    .work-bg.wrap {
+    .cinematic-card .placeholder{
+      position:absolute;
+      inset:0;
+      border-radius:34px;
+      box-shadow:none;
+      border:none;
+    }
+
+    .cinematic-overlay{
+      position:absolute;
+      left:26px;
+      right:26px;
+      bottom:24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:20px;
+      z-index:2;
+    }
+
+    .cinematic-info{
+      max-width:520px;
+      padding:20px 22px;
+      border-radius:22px;
+      background:rgba(255,248,241,.84);
+      border:1px solid rgba(255,255,255,.84);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    .cinematic-info small{
+      display:block;
+      margin-bottom:8px;
+      color:#9f6d44;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+
+    .cinematic-info h3{
+      margin:0 0 8px;
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(1.4rem,2vw,2rem);
+      letter-spacing:-.04em;
+    }
+
+    .cinematic-info p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .cinematic-index{
+      padding:14px 18px;
+      border-radius:999px;
+      background:rgba(255,248,241,.84);
+      border:1px solid rgba(255,255,255,.84);
+      font-weight:800;
+      color:#7e4c23;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    /* SERVICES */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .service-card{
+      padding:26px;
+      min-height:270px;
+      border-radius:28px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .service-card::before{
+      content:"";
+      position:absolute;
+      right:-40px;
+      bottom:-50px;
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,164,87,.2), transparent 65%);
+    }
+
+    .service-index{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      margin-bottom:16px;
+      border-radius:15px;
+      background:linear-gradient(135deg, rgba(255,122,24,.12), rgba(255,177,107,.26));
+      color:#7b491f;
+      font-weight:900;
+    }
+
+    .service-card h3{
+      margin:0 0 12px;
+      font-family:"Manrope",sans-serif;
+      font-size:1.28rem;
+      letter-spacing:-.03em;
+    }
+
+    .service-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    /* SHOWCASE */
+    .showcase{
+      overflow:clip;
+    }
+
+    .showcase-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:30px;
+    }
+
+    .showcase-note{
+      max-width:430px;
+      color:var(--muted);
+      line-height:1.75;
+    }
+
+    .horizontal-shell{
+      position:relative;
+      min-height:520px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.82);
       background:
-        linear-gradient(120deg, rgba(255,255,255,0.12) 0 8%, transparent 8% 12%, rgba(255,255,255,0.08) 12% 18%, transparent 18% 22%, rgba(255,255,255,0.06) 22% 24%, transparent 24%),
-        linear-gradient(145deg, rgba(255,106,61,0.18), rgba(122,92,255,0.08) 55%),
-        #14141c;
+        linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.64)),
+        linear-gradient(135deg, rgba(255,162,87,.11), rgba(255,230,208,.22));
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
-    .work-bg.gallery {
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,193,120,0.18), transparent 18%),
-        radial-gradient(circle at 65% 68%, rgba(239,79,164,0.14), transparent 20%),
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    .horizontal-track{
+      display:flex;
+      gap:20px;
+      align-items:stretch;
+      height:100%;
+      padding:20px;
+      width:max-content;
+      will-change:transform;
     }
 
-    .work-content {
-      position: relative;
-      z-index: 1;
+    .showcase-card{
+      width:min(78vw, 420px);
+      min-height:480px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.74));
+      border:1px solid rgba(255,255,255,.88);
+      box-shadow:0 16px 38px rgba(79,49,15,.1);
+      flex:0 0 auto;
     }
 
-    .work-card h3 { margin: 0 0 10px; font-size: clamp(1.35rem, 3vw, 2rem); }
-    .work-card p { margin: 0; color: var(--muted); line-height: 1.8; max-width: 48ch; }
-
-    .mini-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
+    .showcase-photo{
+      flex:1;
+      min-height:310px;
+      border-radius:22px;
     }
 
-    .mini-list div {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #efebe6;
+    .showcase-card small{
+      color:#9c6c43;
+      font-size:.74rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.16em;
     }
 
-    .gallery-grid {
-      grid-template-columns: repeat(4, 1fr);
+    .showcase-card h3{
+      margin:0;
+      font-family:"Manrope",sans-serif;
+      font-size:1.45rem;
+      letter-spacing:-.04em;
     }
 
-    .gallery-card {
-      min-height: 280px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(10,10,14,0.56)),
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.14), transparent 18%),
-        linear-gradient(135deg, rgba(255,106,61,0.22), rgba(239,79,164,0.18), rgba(122,92,255,0.16));
+    .showcase-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
     }
 
-    .gallery-card:nth-child(2) {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(10,10,14,0.56)),
-        radial-gradient(circle at 74% 18%, rgba(255,193,120,0.16), transparent 18%),
-        linear-gradient(135deg, rgba(255,193,120,0.18), rgba(255,106,61,0.16), rgba(255,255,255,0.05));
+    /* PRISM / 3D */
+    .prism-section{
+      position:relative;
+      overflow:clip;
     }
 
-    .gallery-card:nth-child(3) {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(10,10,14,0.56)),
-        radial-gradient(circle at 24% 24%, rgba(239,79,164,0.2), transparent 18%),
-        linear-gradient(135deg, rgba(239,79,164,0.2), rgba(122,92,255,0.18), rgba(255,255,255,0.04));
+    .prism-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:22px;
+      margin-top:32px;
     }
 
-    .gallery-card:nth-child(4) {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(10,10,14,0.56)),
-        radial-gradient(circle at 60% 16%, rgba(255,255,255,0.14), transparent 18%),
-        linear-gradient(135deg, rgba(255,106,61,0.18), rgba(255,193,120,0.16), rgba(122,92,255,0.18));
+    .prism-main{
+      min-height:560px;
+      padding:18px;
+      border-radius:34px;
+      position:relative;
+      overflow:hidden;
+      transform-style:preserve-3d;
     }
 
-    .marquee-wrap {
-      overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
+    .prism-main .placeholder{
+      width:100%;
+      height:100%;
+      min-height:520px;
     }
 
-    .marquee {
-      display: flex;
-      gap: 28px;
-      min-width: max-content;
-      padding: 18px 0;
-      animation: scrollLine 18s linear infinite;
+    .prism-badge{
+      position:absolute;
+      top:24px;
+      right:24px;
+      padding:12px 16px;
+      border-radius:999px;
+      background:rgba(255,248,241,.86);
+      border:1px solid rgba(255,255,255,.84);
+      font-weight:800;
+      color:#8d582d;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      z-index:3;
     }
 
-    .marquee span {
-      color: #efe9e4;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.88rem;
-      white-space: nowrap;
+    .prism-col{
+      display:grid;
+      gap:18px;
     }
 
-    .timeline {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px;
+    .prism-card{
+      padding:18px;
+      border-radius:28px;
+      position:relative;
+      overflow:hidden;
+      min-height:270px;
+      transform-style:preserve-3d;
     }
 
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 18px;
-      align-items: start;
-      padding: 18px 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
+    .prism-card .placeholder{
+      width:100%;
+      height:170px;
+      border-radius:20px;
+      margin-bottom:16px;
     }
 
-    .timeline-item:first-child { border-top: none; padding-top: 0; }
-    .timeline-item .year {
-      color: var(--accent-2);
-      font-weight: 800;
-      letter-spacing: 0.04em;
+    .prism-card h3{
+      margin:0 0 8px;
+      font-family:"Manrope",sans-serif;
+      font-size:1.28rem;
+      letter-spacing:-.03em;
     }
 
-    .timeline-item h4 { margin: 0 0 8px; font-size: 1.06rem; }
-    .timeline-item p { margin: 0; color: var(--muted); line-height: 1.7; }
-
-    .contact-grid {
-      grid-template-columns: 1fr 1fr;
-      align-items: stretch;
+    .prism-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
     }
 
-    .contact-card {
-      padding: 28px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow);
+    /* INFINITE STRIPS */
+    .strips-section{
+      overflow:hidden;
+      position:relative;
     }
 
-    .contact-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
+    .strip{
+      display:flex;
+      gap:18px;
+      width:max-content;
+      margin-top:18px;
+      will-change:transform;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+    .strip.reverse{
+      margin-left:-140px;
     }
 
-    .contact-item span { color: var(--muted); font-size: 0.92rem; display: block; margin-bottom: 5px; }
-    .contact-item strong { font-size: 1rem; }
-
-    .socials {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 22px;
+    .strip-item{
+      width:min(30vw, 340px);
+      min-width:240px;
+      height:220px;
+      border-radius:26px;
+      overflow:hidden;
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(255,255,255,.84);
+      box-shadow:var(--shadow);
+      padding:12px;
+      flex:0 0 auto;
     }
 
-    .socials a {
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #fff;
-      transition: 0.25s ease;
+    .strip-item .placeholder{
+      width:100%;
+      height:100%;
+      border-radius:18px;
     }
 
-    .socials a:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
-
-    .contact-form {
-      display: grid;
-      gap: 14px;
+    /* STACK DEPTH */
+    .stack-section{
+      position:relative;
+      overflow:clip;
     }
 
-    .field {
-      display: grid;
-      gap: 8px;
+    .stack-wrap{
+      position:relative;
+      min-height:240vh;
+      margin-top:30px;
     }
 
-    .field label {
-      font-size: 0.92rem;
-      color: var(--muted);
+    .stack-stage{
+      position:sticky;
+      top:110px;
+      height:calc(100vh - 140px);
+      display:grid;
+      place-items:center;
     }
 
-    .field input,
-    .field textarea {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      border-radius: 18px;
-      padding: 15px 16px;
-      color: white;
-      outline: none;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-      font: inherit;
+    .stack-card{
+      position:absolute;
+      width:min(88vw, 980px);
+      min-height:520px;
+      padding:22px;
+      border-radius:32px;
+      transform-origin:center center;
+      overflow:hidden;
     }
 
-    .field textarea { min-height: 160px; resize: vertical; }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: rgba(255,193,120,0.55);
-      box-shadow: 0 0 0 4px rgba(255,193,120,0.08);
+    .stack-card .placeholder{
+      width:100%;
+      height:320px;
+      border-radius:24px;
+      margin-bottom:18px;
     }
 
-    .form-feedback {
-      min-height: 22px;
-      color: #ffd6c2;
-      font-size: 0.92rem;
+    .stack-card small{
+      display:block;
+      margin-bottom:8px;
+      color:#9e6c43;
+      font-size:.74rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.16em;
     }
 
-    footer {
-      padding: 28px 0 50px;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      position: relative;
-      z-index: 2;
+    .stack-card h3{
+      margin:0 0 10px;
+      font-family:"Manrope",sans-serif;
+      font-size:1.8rem;
+      letter-spacing:-.04em;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
+    .stack-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:720px;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px) scale(0.985);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: transform, opacity;
+    /* ABOUT */
+    .about-grid{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:24px;
+      margin-top:30px;
     }
 
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0) scale(1);
+    .about-photo{
+      min-height:520px;
+      padding:18px;
+      border-radius:32px;
     }
 
-    .parallax {
-      transform: translateY(var(--shift, 0px));
-      transition: transform 0.06s linear;
+    .about-photo .placeholder{
+      width:100%;
+      height:100%;
+      min-height:484px;
+      border-radius:24px;
     }
 
-    @keyframes spinSlow {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    .about-copy{
+      padding:34px;
+      border-radius:32px;
     }
 
-    @keyframes scrollLine {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .about-copy h3{
+      margin:0 0 14px;
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(1.7rem,3vw,2.5rem);
+      letter-spacing:-.04em;
+      line-height:1;
     }
 
-    @media (max-width: 1100px) {
+    .about-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .about-item{
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(255,244,235,.76);
+      border:1px solid rgba(255,122,24,.1);
+    }
+
+    .about-item strong{
+      display:block;
+      margin-bottom:6px;
+      font-family:"Manrope",sans-serif;
+      letter-spacing:-.02em;
+    }
+
+    .about-item span{
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.95rem;
+    }
+
+    /* PROCESS */
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .step{
+      padding:24px;
+      border-radius:26px;
+    }
+
+    .step-number{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      margin-bottom:16px;
+      border-radius:14px;
+      background:linear-gradient(135deg, rgba(255,122,24,.14), rgba(255,180,106,.26));
+      color:#8a4d1f;
+      font-weight:900;
+    }
+
+    .step h3{
+      margin:0 0 10px;
+      font-family:"Manrope",sans-serif;
+      font-size:1.18rem;
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:.96rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      grid-template-rows:270px 270px;
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .project-card{
+      position:relative;
+      overflow:hidden;
+      padding:18px;
+      border-radius:28px;
+    }
+
+    .project-card .placeholder{
+      position:absolute;
+      inset:18px;
+      border-radius:22px;
+    }
+
+    .project-card.large{
+      grid-row:1 / span 2;
+    }
+
+    .project-overlay{
+      position:relative;
+      z-index:1;
+      max-width:82%;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,248,241,.9);
+      border:1px solid rgba(255,255,255,.88);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      margin-top:auto;
+    }
+
+    .project-overlay small{
+      display:block;
+      margin-bottom:8px;
+      color:#a36c43;
+      font-size:.74rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+    }
+
+    .project-overlay h3{
+      margin:0 0 8px;
+      font-family:"Manrope",sans-serif;
+      font-size:1.22rem;
+      letter-spacing:-.03em;
+    }
+
+    .project-overlay p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.94rem;
+    }
+
+    /* CTA */
+    .cta-box{
+      position:relative;
+      overflow:hidden;
+      padding:42px;
+      border-radius:34px;
+      background:linear-gradient(135deg,#ff8e31 0%,#ff7a18 35%,#ffb25f 100%);
+      color:#fff;
+      box-shadow:0 28px 60px rgba(255,122,24,.24);
+    }
+
+    .cta-box::before,
+    .cta-box::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,.14);
+    }
+
+    .cta-box::before{
+      width:220px;height:220px;
+      right:-50px;top:-50px;
+    }
+
+    .cta-box::after{
+      width:170px;height:170px;
+      left:12%;bottom:-70px;
+    }
+
+    .cta-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+    }
+
+    .cta-box h2{
+      margin:12px 0 10px;
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(2rem,4vw,4rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+    }
+
+    .cta-box p{
+      margin:0;
+      max-width:680px;
+      line-height:1.75;
+      color:rgba(255,255,255,.92);
+    }
+
+    /* FOOTER */
+    footer{
+      padding:34px 0 52px;
+    }
+
+    .footer-box{
+      padding:24px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px;
+      align-items:center;
+      border-radius:26px;
+    }
+
+    .footer-box p{
+      margin:8px 0 0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .footer-links a{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,244,236,.78);
+      border:1px solid rgba(255,122,24,.1);
+      color:#5e5045;
+      font-weight:600;
+    }
+
+    .split-line{
+      display:block;
+      overflow:hidden;
+    }
+
+    .split-line > span{
+      display:block;
+      transform:translateY(115%);
+    }
+
+    @media (max-width: 1150px){
       .hero-grid,
-      .split,
-      .contact-grid,
-      .services-grid,
-      .editorial-grid,
-      .gallery-grid {
-        grid-template-columns: 1fr;
+      .prism-grid,
+      .about-grid,
+      .cta-inner{
+        grid-template-columns:1fr;
       }
 
-      .hero-copy,
-      .hero-visual { min-height: unset; }
+      .hero-visual{
+        min-height:620px;
+      }
 
-      .works-grid { grid-template-columns: 1fr; }
-      .work-card.large,
-      .work-card.medium,
-      .work-card.full { grid-column: auto; }
+      .hero-meta,
+      .services-grid,
+      .steps{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .projects-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:300px 250px 250px;
+      }
+
+      .project-card.large{
+        grid-column:1 / -1;
+        grid-row:1;
+      }
+
+      .cinematic-card{
+        width:min(92vw, 980px);
+      }
     }
 
-    @media (max-width: 760px) {
-      .menu-toggle { display: inline-grid; place-items: center; }
-      .nav-links {
-        position: absolute;
-        left: 16px;
-        right: 16px;
-        top: calc(100% + 10px);
-        padding: 14px;
-        border-radius: 24px;
-        border: 1px solid rgba(255,255,255,0.08);
-        background: rgba(10,10,14,0.94);
-        box-shadow: var(--shadow);
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
+    @media (max-width: 920px){
+      .nav-links,
+      .nav-right .btn-primary{
+        display:none;
       }
 
-      .nav-links.open { display: flex; }
-      .nav-links a,
-      .nav-links .cta { width: 100%; text-align: center; }
-      .hero { padding-top: 26px; }
-      .hero-stats { grid-template-columns: 1fr; }
-      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
-      .section { padding: 78px 0; }
-      .art-frame { inset: 18px; }
-      .visual-stack,
-      .visual-card { width: 100%; }
-      .floating-cta { right: 12px; bottom: 12px; }
-      .cursor-glow { display: none; }
+      .mobile-toggle{
+        display:flex;
+      }
+
+      .hero{
+        padding-top:128px;
+      }
+
+      .hero-copy h1{
+        font-size:clamp(2.8rem,12vw,5rem);
+      }
+
+      .hero-meta{
+        grid-template-columns:1fr;
+      }
+
+      .hero-visual{
+        min-height:560px;
+      }
+
+      .hero-stack{
+        min-height:520px;
+      }
+
+      .hero-main{
+        width:100%;
+        height:54%;
+        left:0;
+        top:0;
+      }
+
+      .hero-side-top{
+        width:47%;
+        height:22%;
+        left:0;
+        right:auto;
+        top:auto;
+        bottom:10%;
+      }
+
+      .hero-side-bottom{
+        width:47%;
+        height:22%;
+        right:0;
+        bottom:10%;
+      }
+
+      .hero-note{
+        width:min(92%, 540px);
+        left:50%;
+        transform:translateX(-50%);
+        bottom:2%;
+      }
+
+      .showcase-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .footer-box{
+        grid-template-columns:1fr;
+      }
+
+      .footer-links{
+        justify-content:flex-start;
+      }
+
+      .cinematic-overlay{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .stack-card{
+        min-height:460px;
+      }
+    }
+
+    @media (max-width: 680px){
+      .container{
+        width:min(calc(100% - 20px), var(--container));
+      }
+
+      .section{
+        padding:78px 0;
+      }
+
+      .site-header{
+        top:10px;
+      }
+
+      .nav{
+        min-height:70px;
+        border-radius:24px;
+      }
+
+      .brand-text span{
+        display:none;
+      }
+
+      .hero{
+        padding-top:116px;
+        padding-bottom:56px;
+      }
+
+      .hero-visual{
+        min-height:500px;
+        padding:12px;
+      }
+
+      .hero-stack{
+        min-height:470px;
+      }
+
+      .hero-main{
+        height:50%;
+      }
+
+      .hero-side-top,
+      .hero-side-bottom{
+        width:48%;
+        height:19%;
+        padding:10px;
+      }
+
+      .hero-note{
+        padding:14px;
+      }
+
+      .services-grid,
+      .about-list,
+      .steps,
+      .projects-grid{
+        grid-template-columns:1fr;
+      }
+
+      .projects-grid{
+        grid-template-rows:repeat(4,250px);
+      }
+
+      .project-card.large{
+        grid-column:auto;
+        grid-row:auto;
+      }
+
+      .project-overlay{
+        max-width:100%;
+      }
+
+      .about-copy{
+        padding:24px;
+      }
+
+      .cta-box{
+        padding:28px 22px;
+      }
+
+      .horizontal-shell{
+        min-height:auto;
+        overflow:visible;
+        background:none;
+        border:none;
+        box-shadow:none;
+      }
+
+      .horizontal-track{
+        width:100%;
+        max-width:100%;
+        overflow-x:auto;
+        overflow-y:hidden;
+        padding:0 0 6px;
+        display:flex;
+        gap:14px;
+        scroll-snap-type:x proximity;
+        -webkit-overflow-scrolling:touch;
+      }
+
+      .horizontal-track::-webkit-scrollbar{
+        height:8px;
+      }
+
+      .horizontal-track::-webkit-scrollbar-thumb{
+        background:rgba(255,122,24,.25);
+        border-radius:999px;
+      }
+
+      .showcase-card{
+        width:84vw;
+        min-height:430px;
+        scroll-snap-align:start;
+      }
+
+      .cinematic-section{
+        padding-top:10px;
+      }
+
+      .cinematic-sticky{
+        min-height:auto;
+      }
+
+      .cinematic-stage{
+        position:relative;
+        height:auto;
+        display:grid;
+        gap:16px;
+        padding:0;
+      }
+
+      .cinematic-card{
+        position:relative;
+        width:100%;
+        height:420px;
+        border-radius:28px;
+        transform:none !important;
+      }
+
+      .cinematic-card + .cinematic-card{
+        margin-top:14px;
+      }
+
+      .cinematic-overlay{
+        left:16px;
+        right:16px;
+        bottom:16px;
+      }
+
+      .cinematic-info{
+        padding:16px;
+      }
+
+      .strip-item{
+        width:72vw;
+        height:180px;
+      }
+
+      .stack-wrap{
+        min-height:auto;
+      }
+
+      .stack-stage{
+        position:relative;
+        height:auto;
+        display:grid;
+        gap:16px;
+      }
+
+      .stack-card{
+        position:relative;
+        width:100%;
+        min-height:auto;
+        transform:none !important;
+      }
+
+      .stack-card + .stack-card{
+        margin-top:14px;
+      }
+
+      .stack-card .placeholder{
+        height:220px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .placeholder::before,
+      .marquee{animation:none !important}
+      *{transition:none !important}
     }
   </style>
 </head>
 <body>
-  <div class="cursor-glow" id="cursorGlow"></div>
-  <div class="noise"></div>
-
   <header class="site-header">
-    <div class="container nav">
-      <a href="#top" class="brand">
-        <div class="brand-mark">PA</div>
-        <div>
-          Pincopall Arts
-          <small>Artista & Wrapper</small>
+    <div class="nav-wrap">
+      <nav class="nav" id="navbar">
+        <a href="#top" class="brand">
+          <div class="brand-mark">PA</div>
+          <div class="brand-text">
+            <strong>Pincopall Arts</strong>
+            <span>Artista • Wrapper</span>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          <a href="#servizi">Servizi</a>
+          <a href="#cinematic">Experience</a>
+          <a href="#showcase">Showcase</a>
+          <a href="#prism">Prism</a>
+          <a href="#about">Bio</a>
+          <a href="#projects">Progetti</a>
+          <a href="#contact">Contatti</a>
         </div>
-      </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
-
-      <nav class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#services">Servizi</a>
-        <a href="#works">Focus</a>
-        <a href="#timeline">Percorso</a>
-        <a href="#contact">Contatti</a>
-        <a class="cta" href="#contact">Prenota un progetto</a>
+        <div class="nav-right">
+          <a href="#contact" class="btn btn-primary">Parliamone</a>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Apri menu">
+            <span></span>
+          </button>
+        </div>
       </nav>
+    </div>
+
+    <div class="mobile-panel" id="mobilePanel">
+      <div class="mobile-links">
+        <a href="#servizi">Servizi</a>
+        <a href="#cinematic">Experience</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#prism">Prism</a>
+        <a href="#about">Bio</a>
+        <a href="#projects">Progetti</a>
+        <a href="#contact">Contatti</a>
+      </div>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <div class="eyebrow tag">Studio creativo • Artista visiva • Wrapping • Superfici</div>
-          <h1>Segni, materia e <span>trasformazioni visive che restano addosso.</span></h1>
-          <p>
-            Pincopall Arts è un'identità creativa che unisce ricerca artistica, immagine contemporanea
-            e applicazione di pellicole adesive. Un linguaggio che vive tra opera, gesto, spazio e superficie,
-            con un'estetica intensa e riconoscibile.
-          </p>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
 
-          <div class="hero-actions">
-            <a href="#gallery" class="cta">Esplora la vetrina</a>
-            <a href="#contact" class="cta ghost">Richiedi una collaborazione</a>
-          </div>
-
-          <div class="hero-stats">
-            <div class="stat">
-              <strong>Visual identity</strong>
-              <span>Un profilo capace di parlare sia al pubblico artistico che a chi cerca un servizio premium.</span>
-            </div>
-            <div class="stat">
-              <strong>Arte + wrapping</strong>
-              <span>Due anime nello stesso universo: poetica, mano tecnica, presenza estetica.</span>
-            </div>
-            <div class="stat">
-              <strong>Editorial mood</strong>
-              <span>Layout pensato per sembrare uno studio creativo, non il classico portfolio standard.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal parallax" data-speed="0.08">
-          <div class="art-frame">
-            <div class="oroboro"></div>
-          </div>
-          <div class="visual-stack">
-            <div class="visual-card">
-              <h3>Direzione artistica</h3>
-              <p>
-                Atmosfera dark, luce calda, contrasti morbidi, movimento e profondità. Il concept punta a un look da studio creativo contemporaneo.
-              </p>
-            </div>
-            <div class="visual-strip">
-              <div class="visual-tile"></div>
-              <div class="visual-tile"></div>
-              <div class="visual-tile"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="marquee-wrap">
-      <div class="marquee">
-        <span>Pincopall Arts</span>
-        <span>Artista visiva</span>
-        <span>Pellicole adesive</span>
-        <span>Wrapping</span>
-        <span>Allestimenti</span>
-        <span>Opere</span>
-        <span>Ricerca visiva</span>
-        <span>Pincopall Arts</span>
-        <span>Artista visiva</span>
-        <span>Pellicole adesive</span>
-        <span>Wrapping</span>
-        <span>Allestimenti</span>
-        <span>Opere</span>
-        <span>Ricerca visiva</span>
-      </div>
-    </div>
-
-    <section id="about" class="section">
-      <div class="container split">
-        <div class="glass-card reveal">
-          <div class="tag">Visione</div>
-          <p class="about-quote" style="margin-top: 18px;">
-            Un pensiero artistico che si muove tra ciclicità, trasformazione e identità,
-            ispirato al simbolo dell'<span>Uroboro</span> e al dialogo tra corpo, spazio e superficie.
-          </p>
-          <div class="pill-row">
-            <div class="pill">Nata a Genova</div>
-            <div class="pill">Accademia di Brera</div>
-            <div class="pill">Ricerca visiva</div>
-            <div class="pill">Applicazione adesiva</div>
-            <div class="pill">Progetti custom</div>
-          </div>
-        </div>
-
-        <div class="section-head reveal" style="margin-bottom: 0;">
-          <div class="tag">About</div>
-          <h2>Una firma visiva che sa essere poetica, tecnica e riconoscibile.</h2>
-          <p>
-            Il sito è pensato come una presenza forte e non come un semplice curriculum online. Da una parte racconta
-            mostre, opere, sensibilità artistica e immaginario. Dall'altra presenta il lato professionale legato a
-            wrapping, applicazione di pellicole e trasformazione di superfici.
-          </p>
-          <p>
-            Questo doppio registro è il suo valore: non solo esecuzione, ma anche sguardo. Non solo estetica,
-            ma anche gesto, precisione e impatto finale.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="section">
       <div class="container">
-        <div class="section-head reveal">
-          <div class="tag">Servizi</div>
-          <h2>Un profilo creativo che può lavorare su opere, spazi e superfici.</h2>
-          <p>
-            Ho reso la sezione più premium e più orientata alla conversione, così chi visita il sito capisce subito
-            dove si colloca il progetto e perché contattarla.
-          </p>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow reveal">Arte, superfici, immagine</div>
+
+            <h1 class="hero-title">
+              <span class="split-line"><span>Segni,</span></span>
+              <span class="split-line"><span>materia</span></span>
+              <span class="split-line"><span class="soft">e superfici che parlano.</span></span>
+            </h1>
+
+            <p class="reveal">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            </p>
+
+            <div class="hero-actions reveal">
+              <a href="#cinematic" class="btn btn-primary">Apri l'experience</a>
+              <a href="#about" class="btn btn-secondary">Scopri la bio</a>
+            </div>
+
+            <div class="hero-meta">
+              <div class="meta-box reveal">
+                <strong>Arte visiva</strong>
+                <span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+              </div>
+              <div class="meta-box reveal">
+                <strong>Wrapping</strong>
+                <span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+              </div>
+              <div class="meta-box reveal">
+                <strong>Impatto</strong>
+                <span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="hero-stack">
+              <div class="placeholder hero-main prism" data-label="foto principale / replace me"></div>
+
+              <div class="hero-side-top glass">
+                <div class="placeholder prism" data-label="dettaglio progetto" style="width:100%;height:100%;"></div>
+              </div>
+
+              <div class="hero-side-bottom glass">
+                <div class="placeholder prism" data-label="pellicola / superficie" style="width:100%;height:100%;"></div>
+              </div>
+
+              <div class="hero-note">
+                <small>Pincopall Arts</small>
+                <strong>Artista & Wrapper</strong>
+                <span>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua. 
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="marquee-wrap reveal">
+          <div class="marquee">
+            <div class="marquee-pill">Photographic projects</div>
+            <div class="marquee-pill">Drawings</div>
+            <div class="marquee-pill">Canvases</div>
+            <div class="marquee-pill">Sculptures</div>
+            <div class="marquee-pill">Exhibitions</div>
+            <div class="marquee-pill">Wrapping</div>
+            <div class="marquee-pill">Applicazione pellicole</div>
+            <div class="marquee-pill">Allestimenti</div>
+
+            <div class="marquee-pill">Photographic projects</div>
+            <div class="marquee-pill">Drawings</div>
+            <div class="marquee-pill">Canvases</div>
+            <div class="marquee-pill">Sculptures</div>
+            <div class="marquee-pill">Exhibitions</div>
+            <div class="marquee-pill">Wrapping</div>
+            <div class="marquee-pill">Applicazione pellicole</div>
+            <div class="marquee-pill">Allestimenti</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servizi">
+      <div class="container">
+        <div class="eyebrow reveal">Cosa fa</div>
+        <h2 class="section-title reveal">Un profilo creativo che si muove tra arte, materia e trasformazione.</h2>
+        <p class="section-desc reveal">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua. 
+        </p>
 
         <div class="services-grid">
-          <article class="service-card reveal">
-            <div class="icon">✦</div>
-            <h3>Artista visiva</h3>
-            <p>
-              Disegni, tele, sculture, fotografia e ricerca contemporanea. Una pratica che mette al centro simboli,
-              identità, continuità e trasformazione.
-            </p>
-            <div class="corner"></div>
+          <article class="service-card glass reveal">
+            <div class="service-index">01</div>
+            <h3>Progetti fotografici</h3>
+            <p>Serie visive, ricerca di luce, narrazione per immagini, texture e composizione.</p>
           </article>
 
-          <article class="service-card reveal">
-            <div class="icon">◌</div>
-            <h3>Wrapping & pellicole</h3>
-            <p>
-              Applicazione di pellicole adesive su superfici diverse con attenzione alla resa, al dettaglio,
-              alla pulizia e al risultato finale.
-            </p>
-            <div class="corner"></div>
+          <article class="service-card glass reveal">
+            <div class="service-index">02</div>
+            <h3>Disegni & tele</h3>
+            <p>Opere su carta e canvas con un’estetica materica, contemporanea e personale.</p>
           </article>
 
-          <article class="service-card reveal">
-            <div class="icon">▣</div>
-            <h3>Collaborazioni custom</h3>
-            <p>
-              Progetti su misura per vetrine, ambienti, allestimenti, installazioni e presenze visive che cercano una mano con gusto e precisione.
-            </p>
-            <div class="corner"></div>
+          <article class="service-card glass reveal">
+            <div class="service-index">03</div>
+            <h3>Wrapping</h3>
+            <p>Applicazione di pellicole adesive per trasformare superfici, oggetti e spazi.</p>
+          </article>
+
+          <article class="service-card glass reveal">
+            <div class="service-index">04</div>
+            <h3>Allestimento visivo</h3>
+            <p>Set-up, dettagli espositivi e soluzioni che richiedono impatto, pulizia e presenza.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container editorial-grid">
-        <article class="editorial-card feature reveal">
+    <section class="cinematic-section" id="cinematic">
+      <div class="grid-bg"></div>
+      <div class="container" style="margin-bottom:24px;">
+        <div class="eyebrow reveal">Fullscreen scroll</div>
+        <h2 class="section-title reveal">Lorem ipsum</h2>
+        <p class="section-desc reveal">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua. 
+        </p>
+      </div>
+
+      <div class="cinematic-sticky">
+        <div class="cinematic-stage">
+          <article class="cinematic-card" id="cine1">
+            <div class="placeholder prism" data-label="fullscreen visual 01"></div>
+            <div class="cinematic-overlay">
+              <div class="cinematic-info">
+                <small>Hero frame</small>
+                <h3>Lorem ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua. </p>
+              </div>
+              <div class="cinematic-index">01</div>
+            </div>
+          </article>
+
+          <article class="cinematic-card" id="cine2">
+            <div class="placeholder prism" data-label="fullscreen visual 02"></div>
+            <div class="cinematic-overlay">
+              <div class="cinematic-info">
+                <small>Material & process</small>
+                <h3>Lorem ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+              <div class="cinematic-index">02</div>
+            </div>
+          </article>
+
+          <article class="cinematic-card" id="cine3">
+            <div class="placeholder prism" data-label="fullscreen visual 03"></div>
+            <div class="cinematic-overlay">
+              <div class="cinematic-info">
+                <small>Transformation</small>
+                <h3>Lorem ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+              <div class="cinematic-index">03</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section showcase" id="showcase">
+      <div class="orb orb-3"></div>
+
+      <div class="container">
+        <div class="showcase-head">
           <div>
-            <div class="tag">Studio mood</div>
-            <h2 style="margin: 18px 0 12px; font-size: clamp(2rem, 4vw, 3.6rem); line-height: 0.94; letter-spacing: -0.05em;">Più galleria contemporanea, meno template.</h2>
-            <p>
-              Questa seconda versione spinge di più sulla direzione creativa: blocchi editoriali, ritmo visivo, sezioni più scenografiche e una percezione più alta del brand.
-            </p>
+            <div class="eyebrow reveal">Lorem ipsum</div>
+            <h2 class="section-title reveal">Una gallery che si muove con il visitatore.</h2>
           </div>
-          <aside>
-            Ideale se vuoi presentarla come artista professionista con una parte operativa premium, senza dare quell'effetto “sito generato a caso”.
-          </aside>
-        </article>
 
-        <div class="editorial-stack">
-          <article class="editorial-card reveal">
-            <div class="tag">Percezione</div>
-            <h3>Look da studio creativo</h3>
-            <p>
-              La grafica comunica personalità, sicurezza e stile. Puoi poi alzare ancora il livello inserendo scatti professionali e immagini portfolio reali.
-            </p>
-            <div class="corner"></div>
-          </article>
+          <p class="showcase-note reveal">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
 
-          <article class="editorial-card reveal">
-            <div class="tag">Strategia</div>
-            <h3>Chi arriva capisce subito chi è</h3>
-            <p>
-              In pochi secondi il visitatore percepisce il mix tra arte, immagine, installazione e lavorazione su superfici.
-            </p>
-            <div class="corner"></div>
-          </article>
+        <div class="horizontal-shell reveal" id="horizontalShell">
+          <div class="horizontal-track" id="horizontalTrack">
+            <article class="showcase-card">
+              <div class="placeholder showcase-photo prism" data-label="foto 01"></div>
+              <small>Lorem ipsum</small>
+              <h3>Lorem ipsum</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                  tempor incididunt ut labore et dolore magna aliqua.</p>
+            </article>
+
+            <article class="showcase-card">
+              <div class="placeholder showcase-photo prism" data-label="foto 02"></div>
+              <small>Surface work</small>
+              <h3>Materiale e presenza</h3>
+              <p>Ideale per dettagli ravvicinati, texture, carta, tela, materia e contrasti.</p>
+            </article>
+
+            <article class="showcase-card">
+              <div class="placeholder showcase-photo prism" data-label="foto 03"></div>
+              <small>Wrapping</small>
+              <h3>Precisione sulle superfici</h3>
+              <p>Spazio perfetto per mostrare lavorazioni tecniche, applicazione e risultato finale.</p>
+            </article>
+
+            <article class="showcase-card">
+              <div class="placeholder showcase-photo prism" data-label="foto 04"></div>
+              <small>Exhibition</small>
+              <h3>Installazione e spazio</h3>
+              <p>Qui puoi inserire corner espositivi, mostre, allestimenti o ambienti curati.</p>
+            </article>
+
+            <article class="showcase-card">
+              <div class="placeholder showcase-photo prism" data-label="foto 05"></div>
+              <small>Visual identity</small>
+              <h3>Impatto, ritmo, taglio</h3>
+              <p>Una chiusura forte per un progetto manifesto, una cover o una hero image importante.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="works" class="section">
+    <section class="section prism-section" id="prism">
+      <div class="orb orb-4"></div>
       <div class="container">
-        <div class="section-head reveal">
-          <div class="tag">Focus</div>
-          <h2>Una vetrina che racconta linguaggio, non solo lavori caricati.</h2>
-          <p>
-            Qui il portfolio non è solo un elenco: è atmosfera, materia, taglio visivo. Le card sono già pronte per essere sostituite con immagini vere, reel o dettagli di opere e wrap.
-          </p>
-        </div>
+        <div class="eyebrow reveal">Prism / glass / depth</div>
+        <h2 class="section-title reveal">Blocchi più scultorei, più riflettenti, più tridimensionali.</h2>
+        <p class="section-desc reveal">
+          Una sezione pensata per dare più sensazione di oggetto, strato, vetro e profondità.
+          Qui il sito può sembrare più installativo e meno classico.
+        </p>
 
-        <div class="works-grid">
-          <article class="work-card large reveal">
-            <div class="work-bg paint"></div>
-            <div class="work-content">
-              <div class="tag">Art works</div>
-              <h3>Disegni, tele, fotografia e sculture.</h3>
-              <p>
-                Sezione ideale per serie, opere singole o capsule editoriali. La struttura dà respiro e valorizza la componente autoriale.
-              </p>
-            </div>
-            <div class="mini-list work-content">
-              <div>Canvases & mixed media</div>
-              <div>Drawings & visual studies</div>
-              <div>Sculptures & three-dimensional work</div>
-            </div>
-          </article>
+        <div class="prism-grid">
+          <div class="prism-main glass reveal tilt-card">
+            <div class="prism-badge">Prism frame</div>
+            <div class="placeholder prism" data-label="prism hero / replace me"></div>
+          </div>
 
-          <article class="work-card medium reveal">
-            <div class="work-bg wrap"></div>
-            <div class="work-content">
-              <div class="tag">Wrapping</div>
-              <h3>Superfici che cambiano identità.</h3>
-              <p>
-                Perfetta per mostrare prima/dopo, dettagli tecnici, texture, materiali e lavorazioni su misura.
-              </p>
-            </div>
-          </article>
+          <div class="prism-col">
+            <article class="prism-card glass reveal tilt-card">
+              <div class="placeholder prism" data-label="detail 01"></div>
+              <h3>Riflessi, tagli, sovrapposizioni.</h3>
+              <p>Questa card lavora bene con close-up, dettaglio materiale, mano, texture o luce.</p>
+            </article>
 
-          <article class="work-card full reveal">
-            <div class="work-bg gallery"></div>
-            <div class="work-content">
-              <div class="tag">Future upgrade</div>
-              <h3>Pronto per gallery, lightbox, reel embed e portfolio dinamico.</h3>
-              <p>
-                La base è già pensata per evolvere senza rifare il sito da zero: puoi inserire immagini reali, caroselli, video, Instagram o case study prima/dopo.
-              </p>
-            </div>
-          </article>
+            <article class="prism-card glass reveal tilt-card">
+              <div class="placeholder prism" data-label="detail 02"></div>
+              <h3>Oggetto visivo e tecnica insieme.</h3>
+              <p>Molto forte se vuoi mostrare gesto artistico e precisione applicativa nello stesso spazio.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="gallery" class="section">
+    <section class="section strips-section" id="flow">
       <div class="container">
-        <div class="section-head reveal">
-          <div class="tag">Visual showcase</div>
-          <h2>Una griglia pronta per ospitare i lavori veri.</h2>
-          <p>
-            Al posto dei semplici placeholder neutri ho aggiunto una sezione vetrina più fashion/editoriale. Quando vuoi, qui possiamo mettere immagini reali con hover, zoom o lightbox.
-          </p>
-        </div>
+        <div class="eyebrow reveal">Infinite motion</div>
+        <h2 class="section-title reveal">Strisce visive continue, come un nastro di immagini.</h2>
+        <p class="section-desc reveal">
+          Ottime per far respirare il sito e riempirlo di ritmo: funzionano bene con dettagli,
+          backstage, texture, opere finite o frammenti di allestimento.
+        </p>
+      </div>
 
-        <div class="gallery-grid">
-          <article class="gallery-card reveal">
-            <div>
-              <div class="tag">Opera</div>
-              <h3>Serie visiva</h3>
-              <p>Spazio ideale per una foto hero di quadro, dettaglio o shooting.</p>
+      <div class="strip" id="stripA">
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 01"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 02"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 03"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 04"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 05"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 06"></div></div>
+
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 01"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 02"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 03"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 04"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 05"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 06"></div></div>
+      </div>
+
+      <div class="strip reverse" id="stripB">
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 07"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 08"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 09"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 10"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 11"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 12"></div></div>
+
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 07"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 08"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 09"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 10"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 11"></div></div>
+        <div class="strip-item"><div class="placeholder prism" data-label="flow 12"></div></div>
+      </div>
+    </section>
+
+    <section class="section stack-section" id="layers">
+      <div class="container">
+        <div class="eyebrow reveal">Layered depth</div>
+        <h2 class="section-title reveal">Card sovrapposte che scorrono come una pila di tavole visive.</h2>
+        <p class="section-desc reveal">
+          Questa sezione crea più profondità narrativa. È molto bella per raccontare step,
+          categorie o capitoli di portfolio.
+        </p>
+
+        <div class="stack-wrap">
+          <div class="stack-stage">
+            <article class="stack-card glass" id="stack1">
+              <div class="placeholder prism" data-label="layer 01"></div>
+              <small>Layer one</small>
+              <h3>Il primo impatto: grande, diretto, dominante.</h3>
+              <p>Una card pensata per aprire il blocco con forza. Ottima per una cover, una serie forte o un ambiente allestito.</p>
+            </article>
+
+            <article class="stack-card glass" id="stack2">
+              <div class="placeholder prism" data-label="layer 02"></div>
+              <small>Layer two</small>
+              <h3>La narrazione si stringe e cambia profondità.</h3>
+              <p>Qui puoi entrare più vicino al lavoro: dettagli, materiale, processi, mano, tagli fotografici.</p>
+            </article>
+
+            <article class="stack-card glass" id="stack3">
+              <div class="placeholder prism" data-label="layer 03"></div>
+              <small>Layer three</small>
+              <h3>Ultimo livello: più editoriale, più ordinato, più raccolto.</h3>
+              <p>Ideale come chiusura di capitolo prima di tornare a una griglia o a una sezione informativa.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="eyebrow reveal">Bio & approccio</div>
+        <h2 class="section-title reveal">Tra sensibilità artistica e mano tecnica.</h2>
+        <p class="section-desc reveal">
+          Una sezione pensata per raccontare il percorso, l’identità visiva e il modo in cui
+          il lavoro artistico incontra la trasformazione concreta delle superfici.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-photo glass reveal">
+            <div class="placeholder prism" data-label="ritratto / studio / replace me"></div>
+          </div>
+
+          <div class="about-copy glass reveal">
+            <h3>Una presenza visiva che unisce gesto, composizione e trasformazione.</h3>
+
+            <p class="section-desc" style="max-width:none;">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ligula non nunc
+              volutpat mattis. Integer cursus, leo id dapibus vulputate, ipsum eros posuere massa,
+              ut vulputate velit nisi vel purus.
+            </p>
+
+            <p class="section-desc" style="max-width:none; margin-top:14px;">
+              Curabitur efficitur, eros et fermentum luctus, felis mauris eleifend sapien, ac commodo
+              tortor eros ut sem. Donec feugiat, turpis non sollicitudin vulputate, eros lorem
+              ullamcorper sem, vitae sodales justo neque et magna.
+            </p>
+
+            <div class="about-list">
+              <div class="about-item">
+                <strong>Ricerca estetica</strong>
+                <span>Colori, volumi, contrasti, superfici e costruzione di atmosfere.</span>
+              </div>
+              <div class="about-item">
+                <strong>Approccio pratico</strong>
+                <span>Interventi puliti, esecuzione precisa e cura del dettaglio.</span>
+              </div>
+              <div class="about-item">
+                <strong>Versatilità</strong>
+                <span>Dal progetto artistico al supporto reale senza perdere coerenza.</span>
+              </div>
+              <div class="about-item">
+                <strong>Identità</strong>
+                <span>Ogni lavoro può avere una voce forte, personale e contemporanea.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="eyebrow reveal">Metodo</div>
+        <h2 class="section-title reveal">Un flusso semplice, ordinato e professionale.</h2>
+        <p class="section-desc reveal">
+          Anche in un sito artistico è utile far percepire ordine nel processo:
+          dà valore al lavoro e rende tutto più credibile.
+        </p>
+
+        <div class="steps">
+          <article class="step glass reveal">
+            <div class="step-number">01</div>
+            <h3>Ascolto</h3>
+            <p>Si parte dall’idea, dal supporto, dallo spazio e dal tipo di presenza che si vuole creare.</p>
+          </article>
+
+          <article class="step glass reveal">
+            <div class="step-number">02</div>
+            <h3>Direzione visiva</h3>
+            <p>Si definiscono linguaggio, materiali, riferimenti, ritmo e taglio del progetto.</p>
+          </article>
+
+          <article class="step glass reveal">
+            <div class="step-number">03</div>
+            <h3>Realizzazione</h3>
+            <p>Produzione dell’opera o intervento sulla superficie con precisione e carattere.</p>
+          </article>
+
+          <article class="step glass reveal">
+            <div class="step-number">04</div>
+            <h3>Valorizzazione</h3>
+            <p>Foto finali, presentazione, esposizione o messa in scena del risultato concluso.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="eyebrow reveal">Featured works</div>
+        <h2 class="section-title reveal">Blocchi grandi, ritmo editoriale, immagini al centro.</h2>
+        <p class="section-desc reveal">
+          Una griglia pensata per mostrare lavori principali, categorie, mostre, prima/dopo
+          e progetti speciali con una gerarchia visiva forte.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card glass large reveal">
+            <div class="placeholder prism" data-label="hero project"></div>
+            <div class="project-overlay">
+              <small>Progetto in evidenza</small>
+              <h3>Una cover forte per il lavoro più importante</h3>
+              <p>Perfetta per una serie fotografica, una mostra, un’installazione o un progetto manifesto.</p>
             </div>
           </article>
-          <article class="gallery-card reveal">
-            <div>
-              <div class="tag">Making</div>
-              <h3>Dettaglio processo</h3>
-              <p>Perfetto per mostrare mano, gesto, materiale o texture.</p>
+
+          <article class="project-card glass reveal">
+            <div class="placeholder prism" data-label="project 02"></div>
+            <div class="project-overlay">
+              <small>Drawings</small>
+              <h3>Segni e materia</h3>
+              <p>Mini descrizione progetto o categoria.</p>
             </div>
           </article>
-          <article class="gallery-card reveal">
-            <div>
-              <div class="tag">Wrap</div>
-              <h3>Surface transformation</h3>
-              <p>Ideale per prima/dopo, angoli, tagli e finitura del lavoro.</p>
+
+          <article class="project-card glass reveal">
+            <div class="placeholder prism" data-label="project 03"></div>
+            <div class="project-overlay">
+              <small>Wrapping</small>
+              <h3>Superfici trasformate</h3>
+              <p>Mini descrizione lavoro applicativo.</p>
             </div>
           </article>
-          <article class="gallery-card reveal">
-            <div>
-              <div class="tag">Studio</div>
-              <h3>Identity shot</h3>
-              <p>Qui una foto ritratto ben fatta alzerebbe tantissimo la percezione.</p>
+
+          <article class="project-card glass reveal">
+            <div class="placeholder prism" data-label="project 04"></div>
+            <div class="project-overlay">
+              <small>Exhibition</small>
+              <h3>Installazione / spazio</h3>
+              <p>Evento, mostra o allestimento.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="timeline" class="section">
-      <div class="container split">
-        <div class="section-head reveal" style="margin-bottom: 0;">
-          <div class="tag">Percorso</div>
-          <h2>Mostre, formazione e crescita artistica.</h2>
-          <p>
-            Ho tenuto il percorso espositivo perché dà autorevolezza reale e rende il sito più credibile anche per chi arriva dal lato professionale.
-          </p>
-        </div>
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="cta-inner">
+            <div>
+              <div class="eyebrow" style="background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.18); color:#fff;">
+                Contatti
+              </div>
+              <h2>Hai un progetto, una collaborazione o una superficie da trasformare?</h2>
+              <p>
+                Qui puoi inserire mail, Instagram, telefono o un bottone WhatsApp.
+                La chiusura è pensata per essere forte, chiara e immediata.
+              </p>
+            </div>
 
-        <div class="glass-card reveal">
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="year">2018</div>
-              <div>
-                <h4>“Ci siamo in (P)arte”</h4>
-                <p>Biblioteca Berio, Genova. Primo tassello del percorso espositivo.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2019</div>
-              <div>
-                <h4>“Life-Uroboro”</h4>
-                <p>Mostra personale a Palazzo Doria De Fornari, con una poetica fortemente legata all'Uroboro.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2019</div>
-              <div>
-                <h4>“Le donne dipingono le donne” / “Il cuore delle donne”</h4>
-                <p>Due appuntamenti che rafforzano presenza e riconoscibilità nel percorso artistico.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2020</div>
-              <div>
-                <h4>“Ready Red”</h4>
-                <p>Spazio 46, Palazzo Ducale, Genova. Tappa importante nella continuità espositiva.</p>
-              </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="mailto:hello@pincopallarts.com" class="btn btn-white">Scrivi una mail</a>
+              <a href="#" class="btn btn-secondary" style="background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.22);">
+                Instagram
+              </a>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="container contact-grid">
-        <div class="contact-card reveal">
-          <div class="tag">Contatti</div>
-          <h2 style="margin: 18px 0 10px; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 0.98; letter-spacing: -0.05em;">Facciamo parlare il tuo progetto.</h2>
-          <p style="margin: 0; color: var(--muted); line-height: 1.8; max-width: 48ch;">
-            Se vuoi collaborare, commissionare un'opera, proporre un allestimento o richiedere un lavoro di wrapping,
-            qui c'è già una struttura elegante e pronta per convertire.
-          </p>
-
-          <div class="contact-list">
-            <div class="contact-item">
-              <div>
-                <span>Email</span>
-                <strong><a href="mailto:art@silviacolace.it">art@silviacolace.it</a></strong>
-              </div>
-              <div>↗</div>
-            </div>
-            <div class="contact-item">
-              <div>
-                <span>Telefono</span>
-                <strong><a href="tel:+39">345 000 0000</a></strong>
-              </div>
-              <div>↗</div>
-            </div>
-            <div class="contact-item">
-              <div>
-                <span>Brand name</span>
-                <strong>@pincopallarts</strong>
-              </div>
-              <div>✦</div>
-            </div>
-          </div>
-
-          <div class="socials">
-            <a href="#">Instagram</a>
-            <a href="#">Portfolio</a>
-            <a href="#">WhatsApp</a>
-          </div>
-        </div>
-
-        <div class="contact-card reveal">
-          <div class="tag">Richiesta rapida</div>
-          <form class="contact-form" id="contactForm">
-            <div class="field">
-              <label for="name">Nome</label>
-              <input id="name" name="name" type="text" placeholder="Il tuo nome" required />
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="nome@email.com" required />
-            </div>
-            <div class="field">
-              <label for="service">Tipo di progetto</label>
-              <input id="service" name="service" type="text" placeholder="Opera, collaborazione, wrapping, allestimento..." required />
-            </div>
-            <div class="field">
-              <label for="message">Messaggio</label>
-              <textarea id="message" name="message" placeholder="Racconta brevemente cosa ti serve" required></textarea>
-            </div>
-            <button class="cta" type="submit">Invia richiesta</button>
-            <div class="form-feedback" id="formFeedback"></div>
-          </form>
         </div>
       </div>
     </section>
   </main>
 
-  <a class="floating-cta" href="#contact" aria-label="Vai ai contatti">
-    <span class="dot"></span>
-    <span>Parliamone</span>
-  </a>
-
   <footer>
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Pincopall Arts — Artista & Wrapper</div>
+    <div class="container">
+      <div class="footer-box glass reveal">
+        <div>
+          <div class="brand" style="pointer-events:none;">
+            <div class="brand-mark">PA</div>
+            <div class="brand-text">
+              <strong>Pincopall Arts</strong>
+              <span>Artista visiva • Wrapper • Portfolio contemporaneo</span>
+            </div>
+          </div>
+          <p>
+            Sito vetrina responsive, pensato per dare spazio ai lavori, all’identità artistica
+            e alla parte applicativa con un’estetica chiara, calda e moderna.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#top">Top</a>
+          <a href="#cinematic">Experience</a>
+          <a href="#showcase">Showcase</a>
+          <a href="#about">Bio</a>
+          <a href="#contact">Contatti</a>
+        </div>
+      </div>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    const cursorGlow = document.getElementById('cursorGlow');
-    const year = document.getElementById('year');
-    const sections = document.querySelectorAll('section[id]');
-    const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-    const reveals = document.querySelectorAll('.reveal');
-    const parallaxItems = document.querySelectorAll('.parallax');
-    const form = document.getElementById('contactForm');
-    const feedback = document.getElementById('formFeedback');
+    gsap.registerPlugin(ScrollTrigger);
 
-    year.textContent = new Date().getFullYear();
+    const navbar = document.getElementById("navbar");
+    const mobileToggle = document.getElementById("mobileToggle");
+    const mobilePanel = document.getElementById("mobilePanel");
+    const body = document.body;
 
-    menuToggle?.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      menuToggle.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+    function closeMobileMenu() {
+      mobilePanel.classList.remove("open");
+      body.classList.remove("menu-open");
+    }
+
+    function openMobileMenu() {
+      mobilePanel.classList.add("open");
+      body.classList.add("menu-open");
+    }
+
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 18);
     });
 
-    navAnchors.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuToggle.textContent = '☰';
+    mobileToggle.addEventListener("click", () => {
+      const isOpen = mobilePanel.classList.contains("open");
+      if (isOpen) closeMobileMenu();
+      else openMobileMenu();
+    });
+
+    document.querySelectorAll(".mobile-links a, .nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        closeMobileMenu();
       });
     });
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          revealObserver.unobserve(entry.target);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMobileMenu();
+    });
+
+    // HERO TEXT
+    gsap.to(".hero-title .split-line > span", {
+      y: 0,
+      duration: 1.05,
+      ease: "power4.out",
+      stagger: 0.08,
+      delay: 0.18
+    });
+
+    // REVEALS
+    gsap.utils.toArray(".reveal").forEach((el) => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
         }
       });
-    }, { threshold: 0.16 });
-
-    reveals.forEach(el => revealObserver.observe(el));
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`));
-        }
-      });
-    }, { rootMargin: '-35% 0px -45% 0px' });
-
-    sections.forEach(section => sectionObserver.observe(section));
-
-    window.addEventListener('mousemove', (e) => {
-      cursorGlow.style.left = `${e.clientX}px`;
-      cursorGlow.style.top = `${e.clientY}px`;
     });
 
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      parallaxItems.forEach(item => {
-        const speed = Number(item.dataset.speed || 0.06);
-        item.style.setProperty('--shift', `${y * speed}px`);
-      });
-    }, { passive: true });
+    // HERO FLOATING
+    gsap.to(".hero-main", {
+      y: 14,
+      duration: 3.4,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
 
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
+    gsap.to(".hero-side-top", {
+      y: -10,
+      rotate: -1.5,
+      duration: 3.1,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
 
-      const data = new FormData(form);
-      const name = data.get('name')?.toString().trim();
-      const email = data.get('email')?.toString().trim();
-      const service = data.get('service')?.toString().trim();
-      const message = data.get('message')?.toString().trim();
+    gsap.to(".hero-side-bottom", {
+      y: 9,
+      rotate: 1.3,
+      duration: 3.6,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
 
-      if (!name || !email || !service || !message) {
-        feedback.textContent = 'Compila tutti i campi prima di inviare.';
-        return;
+    gsap.to(".hero-note", {
+      y: 7,
+      duration: 2.8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // ORBS
+    gsap.to(".orb-1", {
+      yPercent: -18,
+      xPercent: -6,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2
       }
+    });
 
-      const subject = encodeURIComponent(`Richiesta progetto - ${service}`);
-      const body = encodeURIComponent(
-        `Nome: ${name}\nEmail: ${email}\nProgetto: ${service}\n\nMessaggio:\n${message}`
+    gsap.to(".orb-2", {
+      yPercent: 18,
+      xPercent: 10,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.4
+      }
+    });
+
+    gsap.to(".orb-3", {
+      yPercent: -12,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1
+      }
+    });
+
+    gsap.to(".orb-4", {
+      yPercent: 12,
+      xPercent: -10,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.1
+      }
+    });
+
+    // HORIZONTAL SHOWCASE
+    function initHorizontalShowcase() {
+      const shell = document.getElementById("horizontalShell");
+      const track = document.getElementById("horizontalTrack");
+      if (!shell || !track) return;
+
+      ScrollTrigger.matchMedia({
+        "(min-width: 681px)": function () {
+          gsap.set(track, { x: 0 });
+          const totalScroll = Math.max(0, track.scrollWidth - shell.clientWidth);
+          if (totalScroll <= 0) return;
+
+          const tween = gsap.to(track, {
+            x: -totalScroll,
+            ease: "none",
+            scrollTrigger: {
+              id: "showcase-horizontal",
+              trigger: shell,
+              start: "top top+=90",
+              end: () => `+=${totalScroll}`,
+              pin: true,
+              scrub: 1,
+              anticipatePin: 1,
+              invalidateOnRefresh: true
+            }
+          });
+
+          return () => {
+            tween.kill();
+            const st = ScrollTrigger.getById("showcase-horizontal");
+            if (st) st.kill();
+            gsap.set(track, { clearProps: "transform" });
+          };
+        },
+
+        "(max-width: 680px)": function () {
+          const st = ScrollTrigger.getById("showcase-horizontal");
+          if (st) st.kill();
+          gsap.set(track, { clearProps: "transform" });
+        }
+      });
+    }
+
+    initHorizontalShowcase();
+
+    // CINEMATIC SECTION
+    function initCinematic() {
+      ScrollTrigger.matchMedia({
+        "(min-width: 681px)": function () {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".cinematic-sticky",
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 1.1
+            }
+          });
+
+          gsap.set("#cine1", { scale: 1, y: 0, zIndex: 3, opacity: 1 });
+          gsap.set("#cine2", { scale: 1.12, y: 90, zIndex: 2, opacity: 0.68 });
+          gsap.set("#cine3", { scale: 1.24, y: 150, zIndex: 1, opacity: 0.42 });
+
+          tl.to("#cine1", { scale: 0.82, y: -90, opacity: 0.5, ease: "none" }, 0)
+            .to("#cine2", { scale: 1, y: 0, opacity: 1, ease: "none" }, 0)
+            .to("#cine2", { scale: 0.84, y: -80, opacity: 0.55, ease: "none" }, 1)
+            .to("#cine3", { scale: 1, y: 0, opacity: 1, ease: "none" }, 1)
+            .to("#cine3", { scale: 0.9, y: -20, opacity: 1, ease: "none" }, 2);
+
+          return () => {
+            tl.kill();
+            ["#cine1", "#cine2", "#cine3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+          };
+        },
+
+        "(max-width: 680px)": function () {
+          ["#cine1", "#cine2", "#cine3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+        }
+      });
+    }
+
+    initCinematic();
+
+    // PRISM PARALLAX
+    gsap.utils.toArray(".prism-main, .prism-card").forEach((el, index) => {
+      gsap.fromTo(el,
+        { y: 30, rotateZ: index % 2 === 0 ? -0.8 : 0.8 },
+        {
+          y: -12,
+          rotateZ: index % 2 === 0 ? 0.5 : -0.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.1
+          }
+        }
       );
+    });
 
-      feedback.textContent = 'Apro il client email con il messaggio precompilato…';
-      window.location.href = `mailto:silviacola.sc14@gmail.com?subject=${subject}&body=${body}`;
-      form.reset();
+    // STRIPS PARALLAX
+    gsap.to("#stripA", {
+      x: -220,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#flow",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+      }
+    });
 
-      setTimeout(() => {
-        feedback.textContent = 'Richiesta pronta: controlla il client email per inviarla.';
-      }, 1200);
+    gsap.to("#stripB", {
+      x: 180,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#flow",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+      }
+    });
+
+    // STACK SECTION
+    function initStackCards() {
+      ScrollTrigger.matchMedia({
+        "(min-width: 681px)": function () {
+          gsap.set("#stack1", { y: 0, scale: 1, rotate: 0, zIndex: 3, opacity: 1 });
+          gsap.set("#stack2", { y: 40, scale: 0.95, rotate: -1.5, zIndex: 2, opacity: 1 });
+          gsap.set("#stack3", { y: 80, scale: 0.9, rotate: 1.5, zIndex: 1, opacity: 1 });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".stack-wrap",
+              start: "top top+=100",
+              end: "bottom bottom",
+              scrub: 1.1
+            }
+          });
+
+          tl.to("#stack1", { y: -70, scale: 0.92, rotate: -2, opacity: 0.4, ease: "none" }, 0)
+            .to("#stack2", { y: 0, scale: 1, rotate: 0, opacity: 1, ease: "none" }, 0)
+            .to("#stack2", { y: -65, scale: 0.93, rotate: 2, opacity: 0.42, ease: "none" }, 1)
+            .to("#stack3", { y: 0, scale: 1, rotate: 0, opacity: 1, ease: "none" }, 1);
+
+          return () => {
+            tl.kill();
+            ["#stack1", "#stack2", "#stack3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+          };
+        },
+
+        "(max-width: 680px)": function () {
+          ["#stack1", "#stack2", "#stack3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+        }
+      });
+    }
+
+    initStackCards();
+
+    // CARD ENTRANCE
+    gsap.utils.toArray(".service-card, .step, .project-card, .showcase-card, .meta-box, .strip-item").forEach(el => {
+      gsap.fromTo(el,
+        { scale: 0.97, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.75,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            once: true
+          }
+        }
+      );
+    });
+
+    // LIGHT TILT ONLY DESKTOP
+    if (window.matchMedia("(hover: hover)").matches) {
+      document.querySelectorAll(".placeholder, .tilt-card").forEach(card => {
+        card.addEventListener("mousemove", e => {
+          if (window.innerWidth <= 920) return;
+
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+          gsap.to(card, {
+            rotateY: x * 4,
+            rotateX: y * -4,
+            transformPerspective: 1000,
+            transformOrigin: "center",
+            duration: 0.28,
+            ease: "power2.out"
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            rotateY: 0,
+            rotateX: 0,
+            duration: 0.4,
+            ease: "power3.out"
+          });
+        });
+      });
+    }
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        closeMobileMenu();
+        ScrollTrigger.refresh();
+      }, 180);
+    });
+
+    window.addEventListener("load", () => {
+      setTimeout(() => ScrollTrigger.refresh(), 120);
     });
   </script>
 </body>
