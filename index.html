@@ -627,7 +627,8 @@
     .cinematic-stage{
       position:sticky;
       top:0;
-      height:100vh;
+      height:100svh;
+      height:100dvh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -1448,6 +1449,9 @@
       }
 
       .hero-note{
+        width:calc(100% - 24px);
+        left:12px;
+        transform:none;
         padding:14px;
       }
 
@@ -1514,8 +1518,10 @@
         scroll-snap-align:start;
       }
 
+      /* FIX MOBILE CINEMATIC */
       .cinematic-section{
         padding-top:10px;
+        padding-bottom:72px;
       }
 
       .cinematic-sticky{
@@ -1525,36 +1531,83 @@
       .cinematic-stage{
         position:relative;
         height:auto;
-        display:grid;
+        min-height:auto;
+        display:flex;
+        flex-direction:column;
         gap:16px;
         padding:0;
+        overflow:visible;
+        align-items:stretch;
+        justify-content:flex-start;
       }
 
       .cinematic-card{
         position:relative;
         width:100%;
-        height:420px;
+        min-height:0;
+        height:auto;
+        aspect-ratio:4 / 5;
+        max-height:none;
         border-radius:28px;
         transform:none !important;
+        opacity:1 !important;
       }
 
       .cinematic-card + .cinematic-card{
-        margin-top:14px;
+        margin-top:0;
+      }
+
+      .cinematic-card .placeholder{
+        position:absolute;
+        inset:0;
+        border-radius:28px;
       }
 
       .cinematic-overlay{
-        left:16px;
-        right:16px;
-        bottom:16px;
+        left:14px;
+        right:14px;
+        bottom:14px;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
       }
 
       .cinematic-info{
-        padding:16px;
+        width:100%;
+        max-width:none;
+        padding:14px;
+        border-radius:18px;
+      }
+
+      .cinematic-info h3{
+        font-size:1.15rem;
+        line-height:1.05;
+      }
+
+      .cinematic-info p{
+        font-size:.92rem;
+        line-height:1.5;
+      }
+
+      .cinematic-index{
+        padding:10px 14px;
+        font-size:.9rem;
+      }
+
+      .strip{
+        gap:12px;
+        margin-top:14px;
+      }
+
+      .strip.reverse{
+        margin-left:0;
       }
 
       .strip-item{
-        width:72vw;
-        height:180px;
+        width:78vw;
+        min-width:78vw;
+        height:170px;
       }
 
       .stack-wrap{
@@ -1653,9 +1706,9 @@
             </h1>
 
             <p class="reveal">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
 
             <div class="hero-actions reveal">
@@ -1695,8 +1748,8 @@
                 <small>Pincopall Arts</small>
                 <strong>Artista & Wrapper</strong>
                 <span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua. 
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua.
                 </span>
               </div>
             </div>
@@ -1732,8 +1785,8 @@
         <div class="eyebrow reveal">Cosa fa</div>
         <h2 class="section-title reveal">Un profilo creativo che si muove tra arte, materia e trasformazione.</h2>
         <p class="section-desc reveal">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
         </p>
 
         <div class="services-grid">
@@ -1770,8 +1823,8 @@
         <div class="eyebrow reveal">Fullscreen scroll</div>
         <h2 class="section-title reveal">Lorem ipsum</h2>
         <p class="section-desc reveal">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
 
@@ -1783,8 +1836,7 @@
               <div class="cinematic-info">
                 <small>Hero frame</small>
                 <h3>Lorem ipsum</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua. </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </div>
               <div class="cinematic-index">01</div>
             </div>
@@ -1796,8 +1848,7 @@
               <div class="cinematic-info">
                 <small>Material & process</small>
                 <h3>Lorem ipsum</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </div>
               <div class="cinematic-index">02</div>
             </div>
@@ -1809,8 +1860,7 @@
               <div class="cinematic-info">
                 <small>Transformation</small>
                 <h3>Lorem ipsum</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </div>
               <div class="cinematic-index">03</div>
             </div>
@@ -1830,8 +1880,8 @@
           </div>
 
           <p class="showcase-note reveal">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
 
@@ -1841,8 +1891,7 @@
               <div class="placeholder showcase-photo prism" data-label="foto 01"></div>
               <small>Lorem ipsum</small>
               <h3>Lorem ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                  tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </article>
 
             <article class="showcase-card">
@@ -1927,7 +1976,6 @@
         <div class="strip-item"><div class="placeholder prism" data-label="flow 04"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 05"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 06"></div></div>
-
         <div class="strip-item"><div class="placeholder prism" data-label="flow 01"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 02"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 03"></div></div>
@@ -1943,7 +1991,6 @@
         <div class="strip-item"><div class="placeholder prism" data-label="flow 10"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 11"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 12"></div></div>
-
         <div class="strip-item"><div class="placeholder prism" data-label="flow 07"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 08"></div></div>
         <div class="strip-item"><div class="placeholder prism" data-label="flow 09"></div></div>
@@ -2377,11 +2424,13 @@
 
     // CINEMATIC SECTION
     function initCinematic() {
+      const cinematicSticky = document.querySelector(".cinematic-sticky");
+
       ScrollTrigger.matchMedia({
         "(min-width: 681px)": function () {
           const tl = gsap.timeline({
             scrollTrigger: {
-              trigger: ".cinematic-sticky",
+              trigger: cinematicSticky,
               start: "top top",
               end: "bottom bottom",
               scrub: 1.1
@@ -2400,12 +2449,31 @@
 
           return () => {
             tl.kill();
-            ["#cine1", "#cine2", "#cine3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+            ["#cine1", "#cine2", "#cine3"].forEach(sel => {
+              gsap.killTweensOf(sel);
+              gsap.set(sel, { clearProps: "all" });
+            });
           };
         },
 
         "(max-width: 680px)": function () {
-          ["#cine1", "#cine2", "#cine3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+          ScrollTrigger.getAll().forEach(trigger => {
+            if (trigger.vars && trigger.vars.trigger === cinematicSticky) {
+              trigger.kill();
+            }
+          });
+
+          ["#cine1", "#cine2", "#cine3"].forEach(sel => {
+            gsap.killTweensOf(sel);
+            gsap.set(sel, {
+              clearProps: "all",
+              opacity: 1,
+              x: 0,
+              y: 0,
+              scale: 1,
+              rotate: 0
+            });
+          });
         }
       });
     }
@@ -2477,12 +2545,18 @@
 
           return () => {
             tl.kill();
-            ["#stack1", "#stack2", "#stack3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+            ["#stack1", "#stack2", "#stack3"].forEach(sel => {
+              gsap.killTweensOf(sel);
+              gsap.set(sel, { clearProps: "all" });
+            });
           };
         },
 
         "(max-width: 680px)": function () {
-          ["#stack1", "#stack2", "#stack3"].forEach(sel => gsap.set(sel, { clearProps: "all" }));
+          ["#stack1", "#stack2", "#stack3"].forEach(sel => {
+            gsap.killTweensOf(sel);
+            gsap.set(sel, { clearProps: "all" });
+          });
         }
       });
     }
@@ -2507,9 +2581,9 @@
       );
     });
 
-    // LIGHT TILT ONLY DESKTOP
-    if (window.matchMedia("(hover: hover)").matches) {
-      document.querySelectorAll(".placeholder, .tilt-card").forEach(card => {
+    // TILT ONLY ON REAL DESKTOP POINTERS
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      document.querySelectorAll(".tilt-card").forEach(card => {
         card.addEventListener("mousemove", e => {
           if (window.innerWidth <= 920) return;
 
